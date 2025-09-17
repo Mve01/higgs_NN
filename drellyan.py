@@ -1,9 +1,6 @@
 import uproot
 import numpy as np
 
-
-batch_size = 1000
-
 class DrellYanDataset:
     def __init__(self):
         #get file and tree 
@@ -11,7 +8,7 @@ class DrellYanDataset:
         tree_drell_yan = file_drell_yan["tree_Hmumu"]
 
         #get specific data
-        list_data_features = ["Muons_Eta_Lead", "Muons_Eta_Sub", "Muons_PT_Lead", "Muons_PT_Sub", "Muons_Phi_Lead", "Muons_Phi_Sub"]
+        list_data_features = ["Muons_PT_Lead", "Muons_PT_Sub"] #["Muons_Eta_Lead", "Muons_Eta_Sub", "Muons_PT_Lead", "Muons_PT_Sub", "Muons_Phi_Lead", "Muons_Phi_Sub"]
         mu_drell_yan = tree_drell_yan.arrays(list_data_features, library = "np")
 
         #shape data into float32 for easier and optimal use
@@ -25,8 +22,8 @@ class DrellYanDataset:
 
         # compute split sizes and split
         indices = np.arange(self.N)
-        train_end = int(0.8 * self.N)
-        val_end = int(0.9 * self.N)
+        train_end = int(0.2 * self.N)
+        val_end =   int(0.3 * self.N)
 
         train_idx = indices[:train_end]
         val_idx = indices[train_end:val_end]
@@ -65,6 +62,4 @@ class DrellYanDataset:
         # boolean mask of events to keep
         mask = np.abs(feature_values - mean) <= sigma * std
 
-        # apply mask to all features (remove whole event)
-        filtered_data = data[mask]
-        return filtered_data
+        return data[mask]

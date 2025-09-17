@@ -37,9 +37,11 @@ class MADE(nn.Module):
         self,
         n_in: int,
         hidden_dims: List[int],
+        feature_lows: torch.Tensor,
+        feature_highs: torch.Tensor,
         gaussian: bool = False,
         random_order: bool = False,
-        seed: Optional[int] = None,
+        seed: Optional[int] = None
     ) -> None:
         """Initalise MADE model.
     
@@ -61,6 +63,8 @@ class MADE(nn.Module):
         self.masks = {}
         self.mask_matrix = []
         self.layers = []
+        self.feature_lows = feature_lows
+        self.feature_highs = feature_highs
 
         # List of layers sizes.
         dim_list = [self.n_in, *hidden_dims, self.n_out]
@@ -78,8 +82,13 @@ class MADE(nn.Module):
     def forward(self, x: Tensor) -> Tensor:
         """Forward pass."""
         if self.gaussian:
-            # If the output is Gaussan, return raw mus and sigmas.
-            return self.model(x)
+            # If the output is Gaussian, return raw mus and sigmas.
+            out = self.model(x)
+            mu, raw_log_scale = torch.chunk(out, 2, dim=1)
+
+            # Apply boundary conditions directly in MADE
+            mu = self.feature_lows + (self.feature_highs - self.feature_lows) * torch.sigmoid(mu)
+            return torch.cat([mu, raw_log_scale], dim=1)
         else:
             # If the output is Bernoulli, run it trough sigmoid to squash p into (0,1).
             return torch.sigmoid(self.model(x))
