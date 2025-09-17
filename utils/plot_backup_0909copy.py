@@ -7,19 +7,18 @@ import seaborn as sns
 import torch
 from torch.distributions import MultivariateNormal
 
-def sample_drellyan_maf(model):
+def sample_drellyan_maf(model, n_in):
     model.eval()
     n_samples = 1000
     
-    u = torch.zeros(n_samples, 6).normal_(0, 1)
-    mvn = MultivariateNormal(torch.zeros(6), torch.eye(6))
+    u = torch.zeros(n_samples, n_in).normal_(0, 1)
+    mvn = MultivariateNormal(torch.zeros(n_in), torch.eye(n_in))
     log_prob = mvn.log_prob(u)
     samples, log_det = model.backward(u)
 
     # Remove NaNs/Infs across the whole tensor
     mask_inf = torch.isfinite(samples).all(dim=-1)
     samples = samples[mask_inf]  
-
 
     samples = samples.detach().cpu()
     return samples
@@ -42,8 +41,8 @@ def plot_hists(samples, validation, epoch):
 
     axes = axes.ravel()  # flatten to 1D array for easy indexing
 
-    x_labels = ["Muons_Eta_Lead", "Muons_Eta_Sub", "Muons_PT_Lead", "Muons_PT_Sub", "Muons_Phi_Lead", "Muons_Phi_Sub"]
-    print(f"n_samples: {len(samples)}")
+    x_labels = ["Muons_PT_Lead", "Muons_PT_Sub"] #["Muons_Eta_Lead", "Muons_Eta_Sub", "Muons_PT_Lead", "Muons_PT_Sub", "Muons_Phi_Lead", "Muons_Phi_Sub"]
+    print(f"n_samples: {len(samples)}", flush = True)
 
     for i in range(n_features):
     # Compute common bins across both distributions
@@ -69,38 +68,4 @@ def plot_hists(samples, validation, epoch):
         os.mkdir(safe_folder)
     save_path = f"{safe_folder}/hist_{epoch}.png"
     plt.savefig(save_path, dpi=300)
-    plt.close()
-
-
-def plot_losses(epochs, train_losses, val_losses, title=None):
-    sns.set(style="white")
-    fig, axes = plt.subplots(
-        ncols=1, nrows=1, figsize=[10, 5], sharey=True, sharex=True, dpi=400
-    )
-
-    train = pd.Series(train_losses).astype(float)
-    val = pd.Series(val_losses).astype(float)
-    train.index += 1
-    val.index += 1
-
-    axes = sns.lineplot(data=train, color="gray", label="Training loss")
-    axes = sns.lineplot(data=val, color="orange", label="Validation loss")
-
-    axes.set_ylabel("Negative log-likelihood")
-    axes.legend(
-        frameon=False,
-        prop={"size": 14},
-        fancybox=False,
-        handletextpad=0.5,
-        handlelength=1,
-    )
-    axes.set_ylim(1250, 1600)
-    axes.set_xlim(0, 50)
-    axes.set_title(title) if title is not None else axes.set_title(None)
-    if not os.path.exists("plots"):
-        os.makedirs("plots")
-    save_path = "plots/train_plots" + str(epochs[-1]) + ".pdf"
-    plt.savefig(
-        save_path, dpi=300, bbox_inches="tight", pad_inches=0,
-    )
     plt.close()

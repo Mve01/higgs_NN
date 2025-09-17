@@ -22,7 +22,7 @@ def train_one_epoch_maf(model, epoch, optimizer, train_loader):
         optimizer.step()
         optimizer.zero_grad()
 
-    avg_loss = np.sum(train_loss) / len(train_loader)
+    avg_loss = train_loss / len(train_loader)
     print("Epoch: {} Average loss: {:.5f}".format(epoch, avg_loss))
     return avg_loss
 
@@ -46,6 +46,6 @@ def train_one_epoch_made(model, epoch, optimizer, train_loader):
         optimizer.step()
         optimizer.zero_grad()
 
-    avg_loss = np.sum(train_loss) / len(train_loader)
+    avg_loss = train_loss / len(train_loader)
     print("Epoch: {} Average loss: {:.5f}".format(epoch, avg_loss))
     return avg_loss
