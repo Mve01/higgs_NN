@@ -3,6 +3,9 @@ __pycache__
 datasets/maf_data/*
 train_plots/*
 model_saves/*
+run/*
+plots/*
+train_hists/*
 gif_results
 models
 results
