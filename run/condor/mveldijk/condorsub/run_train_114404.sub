@@ -1,0 +1,11 @@
+executable=/project/atlas/users/mveldijk/higgs_NN_git/run/condor/mveldijk/condorsub/run_train_114404.sh
+JobBatchName=run_train_114404
++JobCategory="short"
++UseOS="el9"
++MaxWallTime=
+request_cpus=1
+request_memory=8000
+log = /project/atlas/users/mveldijk/higgs_NN_git/run/run_train_114404_114404.condorlog
+output = /project/atlas/users/mveldijk/higgs_NN_git/run/run_train_114404_114404.log
+error = /project/atlas/users/mveldijk/higgs_NN_git/run/run_train_114404_114404.stderr
+queue

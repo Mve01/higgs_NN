@@ -1,0 +1,44 @@
+000 (2833594.000.000) 2025-09-17 10:00:37 Job submitted from host: <145.107.7.246:9618?addrs=145.107.7.246-9618+[2a07-8500-120-e070--3f6]-9618&alias=taai-007.nikhef.nl&noUDP&sock=schedd_11406_2550>
+...
+001 (2833594.000.000) 2025-09-17 10:00:41 Job executing on host: <145.107.4.166:9618?addrs=145.107.4.166-9618+[2a07-8500-120-e070--a6]-9618&alias=wn-pijl-005.nikhef.nl&noUDP&sock=startd_40808_78e2>
+	SlotName: slot1_31@wn-pijl-005.nikhef.nl
+	AvailableGPUs = {  }
+	CondorScratchDir = "/scratch/condor_execute/dir_460123"
+	Cpus = 1
+	Disk = 14162
+	GPUs = 0
+	Memory = 16384
+...
+006 (2833594.000.000) 2025-09-17 10:00:50 Image size of job updated: 23616
+	23  -  MemoryUsage of job (MB)
+	22532  -  ResidentSetSize of job (KB)
+...
+006 (2833594.000.000) 2025-09-17 10:05:50 Image size of job updated: 16739984
+	16347  -  MemoryUsage of job (MB)
+	16738384  -  ResidentSetSize of job (KB)
+...
+021 (2833594.000.000) 2025-09-17 10:07:56 Error from starter on slot1_31@wn-pijl-005.nikhef.nl:
+	Job has gone over cgroup memory limit of 16384 megabytes. Last measured usage: 16347 megabytes.  Consider resubmitting with a higher request_memory.
+	Code 34 Subcode 0
+...
+004 (2833594.000.000) 2025-09-17 10:07:59 Job was evicted. Code 34 Subcode 0
+	(0) CPU times
+		Usr 0 00:01:30, Sys 0 00:04:15  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	Reason: Error from slot1_31@wn-pijl-005.nikhef.nl: Job has gone over cgroup memory limit of 16384 megabytes. Last measured usage: 16347 megabytes.  Consider resubmitting with a higher request_memory.
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :     0.80        1         1 
+	   Disk (KB)            :     2           2     14162 
+	   GPUs                 :                           0 
+	   Memory (MB)          : 16347       16000     16384 
+	   TimeSlotBusy (s)     :   435                       
+...
+012 (2833594.000.000) 2025-09-17 10:07:59 Job was held.
+	Error from slot1_31@wn-pijl-005.nikhef.nl: Job has gone over cgroup memory limit of 16384 megabytes. Last measured usage: 16347 megabytes.  Consider resubmitting with a higher request_memory.
+	Code 34 Subcode 0
+...
+009 (2833594.000.000) 2025-09-17 10:09:35 Job was aborted.
+	via condor_rm (by user mveldijk)
+...

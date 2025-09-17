@@ -1,0 +1,93 @@
+[7mlsetup              [0m lsetup <tool1> [ <tool2> ...] (see lsetup -h):
+[7m lsetup asetup      [0m  (or asetup) to setup an Athena release
+[7m lsetup astyle      [0m  ATLAS style macros
+[7m lsetup atlantis    [0m  Atlantis: event display
+[7m lsetup centralpage [0m  Find samples
+[7m lsetup eiclient    [0m  Event Index 
+[7m lsetup emi         [0m  EMI: grid middleware user interface 
+[7m lsetup lcgenv      [0m  lcgenv: setup tools from cvmfs SFT repository
+[7m lsetup panda       [0m  Panda: Production ANd Distributed Analysis
+[7m lsetup pyami       [0m  pyAMI: ATLAS Metadata Interface python client
+[7m lsetup root        [0m  ROOT data processing framework
+[7m lsetup rucio       [0m  distributed data management system client
+[7m lsetup scikit      [0m  python data analysis ecosystem
+[7m lsetup views       [0m  Set up a full LCG release
+[7m lsetup xcache      [0m  XRootD local proxy cache
+[7m lsetup xrootd      [0m  XRootD data access
+[7madvancedTools       [0m advanced tools menu
+[7mdiagnostics         [0m diagnostic tools menu
+[7mhelpMe              [0m more help
+[7minstallPip          [0m install relocatable pip modules locally
+[7minstallRpm          [0m install relocatable rpms locally
+[7mprintMenu           [0m show this menu
+[7mqueryC              [0m find / whatis container query
+[7mshowVersions        [0m show versions of installed software
+
+Epoch: 1 Average loss: 41.20072
+Validation loss: 24962.5901 +/- 1.2972
+n_samples: 1000
+Patience counter: 0/100
+Epoch: 2 Average loss: 38.61243
+Validation loss: 417.0792 +/- 1.2664
+n_samples: 1000
+Patience counter: 0/100
+Epoch: 3 Average loss: 37.62076
+Validation loss: 87.0969 +/- 0.1465
+n_samples: 1000
+Patience counter: 0/100
+Epoch: 4 Average loss: 40.45199
+Validation loss: 62.7271 +/- 0.0853
+n_samples: 1000
+Patience counter: 0/100
+Epoch: 5 Average loss: 41.46093
+Validation loss: 49.4256 +/- 0.0499
+n_samples: 1000
+Patience counter: 0/100
+Epoch: 6 Average loss: 37.26413
+Validation loss: 158.2782 +/- 0.4480
+n_samples: 1000
+Patience counter: 1/100
+Epoch: 7 Average loss: 39.79992
+Validation loss: 253.9683 +/- 2.1715
+n_samples: 1000
+Patience counter: 2/100
+Epoch: 8 Average loss: 46.01261
+Validation loss: 48.1805 +/- 0.0146
+n_samples: 1000
+Patience counter: 0/100
+Epoch: 9 Average loss: 41.75477
+Validation loss: 2368.3962 +/- 63.8427
+n_samples: 1000
+Patience counter: 1/100
+Epoch: 10 Average loss: 44.04432
+Validation loss: 47.2421 +/- 0.0113
+n_samples: 1000
+Patience counter: 0/100
+Epoch: 11 Average loss: 41.50991
+Validation loss: 44.9777 +/- 0.0047
+n_samples: 1000
+Patience counter: 0/100
+Epoch: 12 Average loss: 35.84930
+Validation loss: 46.2858 +/- 0.0108
+n_samples: 1000
+Patience counter: 1/100
+Epoch: 13 Average loss: 37.31512
+Validation loss: 44.2469 +/- 0.0080
+n_samples: 1000
+Patience counter: 0/100
+Epoch: 14 Average loss: 34.55779
+Validation loss: 41.6069 +/- 0.0131
+n_samples: 1000
+Patience counter: 0/100
+Epoch: 15 Average loss: 33.95621
+Validation loss: 39.4135 +/- 0.0086
+n_samples: 1000
+Patience counter: 0/100
+Epoch: 16 Average loss: 34.90834
+Validation loss: 134.6216 +/- 1.7174
+n_samples: 1000
+Patience counter: 1/100
+Epoch: 17 Average loss: 40.37013
+Validation loss: 42.8893 +/- 0.0060
+n_samples: 1000
+Patience counter: 2/100
