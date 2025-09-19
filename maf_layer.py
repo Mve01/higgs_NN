@@ -6,13 +6,11 @@ from made import MADE
 
 
 class MAFLayer(nn.Module):
-    def __init__(self, dim: int, hidden_dims: List[int], feature_lows: torch.Tensor, feature_highs: torch.Tensor, reverse: bool):
+    def __init__(self, dim: int, hidden_dims: List[int], reverse: bool):
         super(MAFLayer, self).__init__()
         self.dim = dim
-        self.made = MADE(dim, hidden_dims, feature_lows, feature_highs, gaussian=True, seed=None)
+        self.made = MADE(dim, hidden_dims, gaussian=True, seed=None)
         self.reverse = reverse
-        self.feature_lows = feature_lows
-        self.feature_highs = feature_highs
 
     def forward(self, x: Tensor) -> Tuple[Tensor, Tensor]:
         out = self.made(x.float())

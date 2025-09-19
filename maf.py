@@ -8,7 +8,7 @@ from batch_norm_layer import BatchNorm_running
 
 class MAF(nn.Module):
     def __init__(
-        self, dim: int, n_layers: int, hidden_dims: List[int], feature_lows:torch.Tensor, feature_highs: torch.Tensor, use_reverse: bool = True
+        self, dim: int, n_layers: int, hidden_dims: List[int], use_reverse: bool = True
     ):
         """
         Args:
@@ -21,11 +21,9 @@ class MAF(nn.Module):
         self.dim = dim
         self.hidden_dims = hidden_dims
         self.layers = nn.ModuleList()
-        self.feature_lows = feature_lows
-        self.feature_highs = feature_highs
 
         for _ in range(n_layers):
-            self.layers.append(MAFLayer(dim, hidden_dims, feature_lows, feature_highs, reverse=use_reverse))
+            self.layers.append(MAFLayer(dim, hidden_dims, reverse=use_reverse))
             self.layers.append(BatchNorm_running(dim))
 
     def forward(self, x: Tensor) -> Tuple[Tensor, Tensor]:

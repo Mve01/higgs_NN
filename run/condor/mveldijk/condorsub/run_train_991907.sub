@@ -1,0 +1,11 @@
+executable=/project/atlas/users/mveldijk/drellyan_maf/run/condor/mveldijk/condorsub/run_train_991907.sh
+JobBatchName=run_train_991907
++JobCategory="short"
++UseOS="el9"
++MaxWallTime=
+request_cpus=1
+request_memory=16000
+log = /project/atlas/users/mveldijk/drellyan_maf/run/run_train_991907_991907.condorlog
+output = /project/atlas/users/mveldijk/drellyan_maf/run/run_train_991907_991907.log
+error = /project/atlas/users/mveldijk/drellyan_maf/run/run_train_991907_991907.stderr
+queue
