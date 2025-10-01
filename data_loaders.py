@@ -2,12 +2,8 @@ import torch
 from drellyan import DrellYanDataset
 
 
-def get_data(dataset: str, list_data_features):
-    dataset = dataset.lower()
-    if dataset == "drellyan":
-        return DrellYanDataset(list_data_features)
-
-    raise ValueError(f"Unknown dataset '{dataset}'. Please choose 'drellyan'.")
+def get_data(list_data_features):   #remove dataset !!!!
+    return DrellYanDataset(list_data_features)
 
 
 def get_data_loaders(data, batch_size: int = 128):

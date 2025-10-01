@@ -3,7 +3,7 @@ import numpy as np
 from maf import MAF
 from made import MADE
 from data_loaders import get_data, get_data_loaders
-from utils.train import train_one_epoch_maf, train_one_epoch_made
+from utils.train import train_one_epoch_maf #, train_one_epoch_made
 from utils.validation import val_maf
 from utils.test import test_maf, test_made
 from utils.plot import sample_drellyan_maf, plot_hists
@@ -12,33 +12,35 @@ matplotlib.use("Agg")  # Use non-interactive backend for remote servers
 import matplotlib.pyplot as plt
 import os
 
-
 # --------- SET PARAMETERS ----------
 model_name = "maf" 
 dataset_name = "drellyan"
 batch_size = 1024
 n_mades = 10
-hidden_dims = [128]
+hidden_dims = [512]
 lr = 3e-4
 random_order = False
-patience = 50  # For early stopping
+patience = 30  # For early stopping
 seed = 290713
 plot = True
 max_epochs = 1000
 save_dir = "plots"
 os.makedirs(save_dir, exist_ok=True)
-list_data_features = ["Muons_Eta_Lead", "Muons_Eta_Sub", "Muons_PT_Lead", "Muons_PT_Sub", "Muons_Phi_Lead", "Muons_Phi_Sub"] #["Muons_PT_Lead", "Muons_PT_Sub"] 
+list_data_features = ["Muons_Eta_Lead", "Muons_Eta_Sub", "Muons_PT_Lead", "Muons_PT_Sub", "Muons_Phi_Lead", "Muons_Phi_Sub"]
+device = "cuda" if torch.cuda.is_available() else "cpu"
 # -----------------------------------
 
+print(f"Using device: {device}")
 # Get dataset and data loaders
-data = get_data(dataset_name, list_data_features)
-train = torch.from_numpy(data.x_train)
+data = get_data(list_data_features)
+train = torch.from_numpy(data.x_train).to(device)
 train_loader, val_loader, test_loader = get_data_loaders(data, batch_size)
 # Get model.
 n_in = data.n_dims
-model = MAF(n_in, n_mades, hidden_dims)
+model = MAF(n_in, n_mades, hidden_dims, device = device)
+model = model.to(device)
 # Get optimiser.
-optimiser = torch.optim.Adam(model.parameters(), lr=lr, weight_decay=1e-6)
+optimiser = torch.optim.Adam(model.parameters(), lr=lr, weight_decay=1e-7)
 
 # Format name of model save file.
 save_name = f"{model_name}_{dataset_name}_{'_'.join(str(d) for d in hidden_dims)}.pt"
@@ -53,11 +55,11 @@ max_loss = np.inf
 # Training loop.
 for epoch in range(1, max_epochs):
     # Train and validate
-    train_loss = train_one_epoch_maf(model, epoch, optimiser, train_loader)
-    val_loss = val_maf(model, train, val_loader)
-
+    train_loss = train_one_epoch_maf(model, epoch, optimiser, train_loader, device)
+    val_loss = val_maf(model, train, val_loader, device)
+   
     if plot:
-        samples = sample_drellyan_maf(model, n_in)
+        samples = sample_drellyan_maf(model, n_in, device)
         plot_hists(samples, val_loader, epoch, list_data_features)
 
     #Make sure too big losses are capped at 150 for the loss plot to make sense
@@ -72,20 +74,21 @@ for epoch in range(1, max_epochs):
     else:
         val_losses.append(max_plot_loss)
 
-    # Early stopping. Save model on each epoch with improvement.
+    #Early stopping. Save model on each epoch with improvement.
     if val_loss < max_loss:
-        i = 0
-        max_loss = val_loss
-        torch.save(model, "model_saves/" + save_name)
+       i = 0
+       max_loss = val_loss
+       torch.save(model, "model_saves/" + save_name)
     else:
-        i += 1
+       i += 1
 
     if i < patience:
         print(f"Patience counter: {i}/{patience}", flush = True)
     else:
         print(f"Patience counter: {i}/{patience}\nTerminate training!", flush = True)
         break
-
+    
+   
     # Save loss plot every 10 epochs
     if epoch % 10 == 0:
         plt.figure(figsize=(8,5))
@@ -98,6 +101,7 @@ for epoch in range(1, max_epochs):
         plt.tight_layout()
         plt.savefig(os.path.join(save_dir, f'loss_plot_epoch_{epoch}.png'))
         plt.close()  # Close figure to save memory
+    
 
 # Save final loss plot
 plt.figure(figsize=(8,5))

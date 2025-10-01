@@ -5,12 +5,12 @@ import matplotlib.pyplot as plt
 import torch
 from torch.distributions import MultivariateNormal
 
-def sample_drellyan_maf(model, n_in):
+def sample_drellyan_maf(model, n_in, device):
     model.eval()
     n_samples = 1000
     
-    u = torch.zeros(n_samples, n_in).normal_(0, 1)
-    mvn = MultivariateNormal(torch.zeros(n_in), torch.eye(n_in))
+    u = torch.zeros(n_samples, n_in).normal_(0, 1).to(device)
+    mvn = MultivariateNormal(torch.zeros(n_in).to(device), torch.eye(n_in).to(device))
     log_prob = mvn.log_prob(u)
     samples, log_det = model.backward(u)
 
@@ -25,7 +25,7 @@ def sample_drellyan_maf(model, n_in):
 def plot_hists(samples, validation, epoch, list_data_features):
     val_batches = []
     for batch in validation:
-            val_batches.append(batch)  
+            val_batches.append(batch.to('cpu'))  
     validation = torch.cat(val_batches).cpu().numpy()
 
     _, n_features = samples.shape
@@ -39,7 +39,7 @@ def plot_hists(samples, validation, epoch, list_data_features):
 
     for i in range(n_features):
     # Compute common bins across both distributions
-        all_data = np.concatenate([samples[:, i], validation[:, i]])
+        all_data = validation[:, i] #np.concatenate([samples[:, i], validation[:, i]])
         bins = np.linspace(all_data.min(), all_data.max(), 50)
 
         axes[i].hist(samples[:, i], bins=bins, histtype="step", color="steelblue",

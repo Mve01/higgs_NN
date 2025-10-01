@@ -3,6 +3,7 @@ import torch.nn as nn
 
 
 class BatchNorm_running(nn.Module):
+ 
     def __init__(self, dim, eps=1e-5):
         super().__init__()
         self.eps = eps
@@ -11,7 +12,7 @@ class BatchNorm_running(nn.Module):
         self.beta = nn.Parameter(torch.zeros(1, dim), requires_grad=True)
         self.register_buffer("running_mean", torch.zeros(1, dim))
         self.register_buffer("running_var", torch.ones(1, dim))
-
+    
     def forward(self, x):
         if self.training:
             m = x.mean(dim=0)
@@ -27,9 +28,9 @@ class BatchNorm_running(nn.Module):
         x_hat = (x - m) / torch.sqrt(v)
         x_hat = x_hat * torch.exp(self.gamma) + self.beta
         ld_scalar = (self.gamma - 0.5 * torch.log(v)).sum()  
-        log_det   = ld_scalar.expand(x.size(0))         
+        log_det   = ld_scalar.expand(x.size(0))        
         return x_hat, log_det
-
+   
     def backward(self, x):
         if self.training:
             m = x.mean(dim=0)

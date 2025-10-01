@@ -3,11 +3,12 @@ import numpy as np
 import torch
 
 
-def val_maf(model, train, val_loader):
+def val_maf(model, train, val_loader, device):
     model.eval()
     val_loss = []
     with torch.no_grad():
         for batch in val_loader:
+            batch = batch.to(device).float()  # Move batch to GPU
             u, log_det = model.forward(batch.float())
             negloglik_loss = 0.5 * (u ** 2).sum(dim=1)
             negloglik_loss += 0.5 * batch.shape[1] * np.log(2 * math.pi)
@@ -19,3 +20,4 @@ def val_maf(model, train, val_loader):
     print("Validation loss: {:.4f} +/- {:.4f}".format(
             loss, 2 * np.std(val_loss) / np.sqrt(N)), flush = True)
     return loss
+

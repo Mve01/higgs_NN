@@ -1,0 +1,392 @@
+Using device: cuda
+Epoch: 1 Average loss: -1.67669
+Validation loss: -17.6754 +/- 0.0153
+n_samples: 1000
+/data/atlas/users/mveldijk/.pyenv/versions/myenv/lib/python3.9/site-packages/numpy/lib/_histograms_impl.py:895: RuntimeWarning: invalid value encountered in divide
+  return n/db/n.sum(), bin_edges
+Patience counter: 0/30
+Epoch: 2 Average loss: -90.02467
+Validation loss: -34.9367 +/- 0.0461
+n_samples: 1000
+Patience counter: 0/30
+Epoch: 3 Average loss: -113.92255
+Validation loss: -65.6255 +/- 0.0480
+n_samples: 1000
+Patience counter: 0/30
+Epoch: 4 Average loss: -121.55949
+Validation loss: -83.4264 +/- 0.0249
+n_samples: 1000
+Patience counter: 0/30
+Epoch: 5 Average loss: -125.16844
+Validation loss: -93.2802 +/- 0.0568
+n_samples: 1000
+Patience counter: 0/30
+Epoch: 6 Average loss: -127.99950
+Validation loss: -107.1218 +/- 0.0473
+n_samples: 1000
+Patience counter: 0/30
+Epoch: 7 Average loss: -131.32806
+Validation loss: -92.8869 +/- 0.1338
+n_samples: 1000
+Patience counter: 1/30
+Epoch: 8 Average loss: -129.24866
+Validation loss: -27.2612 +/- 1.6934
+n_samples: 1000
+Patience counter: 2/30
+Epoch: 9 Average loss: -131.33212
+Validation loss: -97.8875 +/- 0.1569
+n_samples: 1000
+Patience counter: 3/30
+Epoch: 10 Average loss: -131.07884
+Validation loss: -89.2842 +/- 0.1836
+n_samples: 1000
+Patience counter: 4/30
+Epoch: 11 Average loss: -128.13718
+Validation loss: -88.9776 +/- 0.2599
+n_samples: 1000
+Patience counter: 5/30
+Epoch: 12 Average loss: -130.15376
+Validation loss: 88.4413 +/- 1.5970
+n_samples: 1000
+Patience counter: 6/30
+Epoch: 13 Average loss: -130.51899
+Validation loss: -83.3152 +/- 0.2896
+n_samples: 1000
+Patience counter: 7/30
+Epoch: 14 Average loss: -135.36737
+Validation loss: -87.6319 +/- 0.1003
+n_samples: 1000
+Patience counter: 8/30
+Epoch: 15 Average loss: -135.50641
+Validation loss: -84.7314 +/- 0.2311
+n_samples: 1000
+Patience counter: 9/30
+Epoch: 16 Average loss: -137.09849
+Validation loss: -88.1142 +/- 0.2824
+n_samples: 1000
+Patience counter: 10/30
+Epoch: 17 Average loss: -137.97038
+Validation loss: -90.1804 +/- 0.2490
+n_samples: 1000
+Patience counter: 11/30
+Epoch: 18 Average loss: -138.44958
+Validation loss: -105.1725 +/- 0.1069
+n_samples: 1000
+Patience counter: 12/30
+Epoch: 19 Average loss: -138.95982
+Validation loss: -114.3274 +/- 0.0914
+n_samples: 1000
+Patience counter: 0/30
+Epoch: 20 Average loss: -137.89165
+Validation loss: -92.2800 +/- 0.2428
+n_samples: 1000
+Patience counter: 1/30
+Epoch: 21 Average loss: -138.97041
+Validation loss: 46.1121 +/- 3.5001
+n_samples: 1000
+Patience counter: 2/30
+Epoch: 22 Average loss: -138.03526
+Validation loss: -106.2056 +/- 0.1383
+n_samples: 1000
+Patience counter: 3/30
+Epoch: 23 Average loss: -137.46735
+Validation loss: -58.7261 +/- 0.4075
+n_samples: 1000
+Patience counter: 4/30
+Epoch: 24 Average loss: -137.95570
+Validation loss: -56.3104 +/- 0.4000
+n_samples: 1000
+Patience counter: 5/30
+Epoch: 25 Average loss: -138.11126
+Validation loss: -119.2277 +/- 0.0786
+n_samples: 1000
+Patience counter: 0/30
+Epoch: 26 Average loss: -137.45957
+Validation loss: -112.1948 +/- 0.0603
+n_samples: 1000
+Patience counter: 1/30
+Epoch: 27 Average loss: -136.32419
+Validation loss: -98.7439 +/- 0.1664
+n_samples: 1000
+Patience counter: 2/30
+Epoch: 28 Average loss: -138.33465
+Validation loss: -102.1094 +/- 0.0648
+n_samples: 1000
+Patience counter: 3/30
+Epoch: 29 Average loss: -139.00331
+Validation loss: 390.7087 +/- 4.0565
+n_samples: 1000
+Patience counter: 4/30
+Epoch: 30 Average loss: -137.83789
+Validation loss: -120.1880 +/- 0.0634
+n_samples: 1000
+Patience counter: 0/30
+Epoch: 31 Average loss: -138.57139
+Validation loss: -117.6992 +/- 0.0813
+n_samples: 1000
+Patience counter: 1/30
+Epoch: 32 Average loss: -141.14502
+Validation loss: -110.0570 +/- 0.0738
+n_samples: 1000
+Patience counter: 2/30
+Epoch: 33 Average loss: -138.36948
+Validation loss: -112.4400 +/- 0.0899
+n_samples: 1000
+Patience counter: 3/30
+Epoch: 34 Average loss: -137.99042
+Validation loss: -103.8050 +/- 0.1762
+n_samples: 1000
+Patience counter: 4/30
+Epoch: 35 Average loss: -138.45177
+Validation loss: -98.2665 +/- 0.1355
+n_samples: 1000
+Patience counter: 5/30
+Epoch: 36 Average loss: -138.95547
+Validation loss: -110.4713 +/- 0.1529
+n_samples: 1000
+Patience counter: 6/30
+Epoch: 37 Average loss: -140.42727
+Validation loss: -113.6545 +/- 0.0923
+n_samples: 1000
+Patience counter: 7/30
+Epoch: 38 Average loss: -138.88892
+Validation loss: -108.1028 +/- 0.2182
+n_samples: 1000
+Patience counter: 8/30
+Epoch: 39 Average loss: -139.37237
+Validation loss: -118.6228 +/- 0.0767
+n_samples: 1000
+Patience counter: 9/30
+Epoch: 40 Average loss: -140.29669
+Validation loss: -102.5279 +/- 0.0776
+n_samples: 1000
+Patience counter: 10/30
+Epoch: 41 Average loss: -141.27345
+Validation loss: -101.6056 +/- 0.1133
+n_samples: 1000
+Patience counter: 11/30
+Epoch: 42 Average loss: -143.21514
+Validation loss: -112.7754 +/- 0.0747
+n_samples: 1000
+Patience counter: 12/30
+Epoch: 43 Average loss: -139.66836
+Validation loss: -113.3095 +/- 0.1119
+n_samples: 1000
+Patience counter: 13/30
+Epoch: 44 Average loss: -141.26967
+Validation loss: -123.2463 +/- 0.0997
+n_samples: 1000
+Patience counter: 0/30
+Epoch: 45 Average loss: -138.41489
+Validation loss: -108.1288 +/- 0.1418
+n_samples: 1000
+Patience counter: 1/30
+Epoch: 46 Average loss: -141.45491
+Validation loss: -110.1501 +/- 0.0528
+n_samples: 1000
+Patience counter: 2/30
+Epoch: 47 Average loss: -140.74613
+Validation loss: -120.7065 +/- 0.0588
+n_samples: 1000
+Patience counter: 3/30
+Epoch: 48 Average loss: -136.46856
+Validation loss: -120.3441 +/- 0.1689
+n_samples: 1000
+Patience counter: 4/30
+Epoch: 49 Average loss: -133.50933
+Validation loss: -108.6689 +/- 0.0709
+n_samples: 1000
+Patience counter: 5/30
+Epoch: 50 Average loss: -131.07913
+Validation loss: -119.4909 +/- 0.0613
+n_samples: 1000
+Patience counter: 6/30
+Epoch: 51 Average loss: -140.42288
+Validation loss: -121.6569 +/- 0.1000
+n_samples: 1000
+Patience counter: 7/30
+Epoch: 52 Average loss: -141.23550
+Validation loss: -124.7445 +/- 0.0920
+n_samples: 1000
+Patience counter: 0/30
+Epoch: 53 Average loss: -139.21292
+Validation loss: -121.3857 +/- 0.1042
+n_samples: 1000
+Patience counter: 1/30
+Epoch: 54 Average loss: -138.86910
+Validation loss: -108.5875 +/- 0.3340
+n_samples: 1000
+Patience counter: 2/30
+Epoch: 55 Average loss: -142.36829
+Validation loss: -119.7121 +/- 0.0516
+n_samples: 1000
+Patience counter: 3/30
+Epoch: 56 Average loss: -141.12210
+Validation loss: -119.5916 +/- 0.2989
+n_samples: 1000
+Patience counter: 4/30
+Epoch: 57 Average loss: -137.39509
+Validation loss: -119.2544 +/- 0.1051
+n_samples: 1000
+Patience counter: 5/30
+Epoch: 58 Average loss: -140.49454
+Validation loss: -63.0688 +/- 0.3268
+n_samples: 1000
+Patience counter: 6/30
+Epoch: 59 Average loss: -139.99155
+Validation loss: -110.1208 +/- 0.1876
+n_samples: 1000
+Patience counter: 7/30
+Epoch: 60 Average loss: -139.18005
+Validation loss: 489.0824 +/- 12.2788
+n_samples: 1000
+Patience counter: 8/30
+Epoch: 61 Average loss: -139.58563
+Validation loss: -118.9627 +/- 0.0857
+n_samples: 1000
+Patience counter: 9/30
+Epoch: 62 Average loss: -140.30485
+Validation loss: -124.5952 +/- 0.1477
+n_samples: 1000
+Patience counter: 10/30
+Epoch: 63 Average loss: -139.97318
+Validation loss: -109.5424 +/- 0.0515
+n_samples: 1000
+Patience counter: 11/30
+Epoch: 64 Average loss: -141.41229
+Validation loss: -123.1800 +/- 0.0872
+n_samples: 1000
+Patience counter: 12/30
+Epoch: 65 Average loss: -142.13542
+Validation loss: -101.0772 +/- 0.0884
+n_samples: 1000
+Patience counter: 13/30
+Epoch: 66 Average loss: -144.97929
+Validation loss: -114.0088 +/- 0.0808
+n_samples: 1000
+Patience counter: 14/30
+Epoch: 67 Average loss: -142.84695
+Validation loss: -125.3711 +/- 0.0486
+n_samples: 1000
+Patience counter: 0/30
+Epoch: 68 Average loss: -141.58495
+Validation loss: -120.4356 +/- 0.1322
+n_samples: 1000
+Patience counter: 1/30
+Epoch: 69 Average loss: -141.12297
+Validation loss: -106.6620 +/- 0.0262
+n_samples: 1000
+Patience counter: 2/30
+Epoch: 70 Average loss: -138.37896
+Validation loss: -116.7551 +/- 0.0714
+n_samples: 1000
+Patience counter: 3/30
+Epoch: 71 Average loss: -136.61208
+Validation loss: -114.3495 +/- 0.0668
+n_samples: 1000
+Patience counter: 4/30
+Epoch: 72 Average loss: -137.68288
+Validation loss: -120.1665 +/- 0.0938
+n_samples: 1000
+Patience counter: 5/30
+Epoch: 73 Average loss: -141.51625
+Validation loss: -118.2473 +/- 0.0822
+n_samples: 1000
+Patience counter: 6/30
+Epoch: 74 Average loss: -139.75553
+Validation loss: -122.5213 +/- 0.1130
+n_samples: 1000
+Patience counter: 7/30
+Epoch: 75 Average loss: -140.46657
+Validation loss: -67.0601 +/- 0.4667
+n_samples: 1000
+Patience counter: 8/30
+Epoch: 76 Average loss: -136.58495
+Validation loss: 120.8100 +/- 1.4164
+n_samples: 1000
+Patience counter: 9/30
+Epoch: 77 Average loss: -140.08702
+Validation loss: -107.4416 +/- 0.1116
+n_samples: 1000
+Patience counter: 10/30
+Epoch: 78 Average loss: -137.44530
+Validation loss: -111.1064 +/- 0.1094
+n_samples: 1000
+Patience counter: 11/30
+Epoch: 79 Average loss: -139.43262
+Validation loss: -116.2550 +/- 0.1403
+n_samples: 1000
+Patience counter: 12/30
+Epoch: 80 Average loss: -136.79582
+Validation loss: -102.7100 +/- 0.4492
+n_samples: 1000
+Patience counter: 13/30
+Epoch: 81 Average loss: -135.62018
+Validation loss: -114.7071 +/- 0.0688
+n_samples: 1000
+Patience counter: 14/30
+Epoch: 82 Average loss: -137.93719
+Validation loss: -120.6407 +/- 0.1136
+n_samples: 1000
+Patience counter: 15/30
+Epoch: 83 Average loss: -137.18882
+Validation loss: -82.6771 +/- 0.0712
+n_samples: 1000
+Patience counter: 16/30
+Epoch: 84 Average loss: -138.87345
+Validation loss: -124.4532 +/- 0.0980
+n_samples: 1000
+Patience counter: 17/30
+Epoch: 85 Average loss: -138.37100
+Validation loss: -118.2742 +/- 0.1443
+n_samples: 1000
+Patience counter: 18/30
+Epoch: 86 Average loss: -139.32882
+Validation loss: -93.4955 +/- 0.0569
+n_samples: 1000
+Patience counter: 19/30
+Epoch: 87 Average loss: -137.05457
+Validation loss: -113.0454 +/- 0.3019
+n_samples: 1000
+Patience counter: 20/30
+Epoch: 88 Average loss: -140.52824
+Validation loss: -114.0535 +/- 0.0550
+n_samples: 1000
+Patience counter: 21/30
+Epoch: 89 Average loss: -139.47721
+Validation loss: -124.8404 +/- 0.1106
+n_samples: 1000
+Patience counter: 22/30
+Epoch: 90 Average loss: -140.60301
+Validation loss: -111.5841 +/- 0.0743
+n_samples: 1000
+Patience counter: 23/30
+Epoch: 91 Average loss: -140.74228
+Validation loss: 2.7571 +/- 1.5653
+n_samples: 1000
+Patience counter: 24/30
+Epoch: 92 Average loss: -139.80337
+Validation loss: -67.6810 +/- 0.3695
+n_samples: 1000
+Patience counter: 25/30
+Epoch: 93 Average loss: -134.45729
+Validation loss: -103.6769 +/- 0.1092
+n_samples: 1000
+Patience counter: 26/30
+Epoch: 94 Average loss: -134.46676
+Validation loss: 21.9958 +/- 1.1598
+n_samples: 1000
+Patience counter: 27/30
+Epoch: 95 Average loss: -138.21079
+Validation loss: -110.7622 +/- 0.0657
+n_samples: 1000
+Patience counter: 28/30
+Epoch: 96 Average loss: -137.93606
+Validation loss: -95.5473 +/- 0.2486
+n_samples: 1000
+Patience counter: 29/30
+Epoch: 97 Average loss: -131.49779
+Validation loss: -102.6950 +/- 0.2071
+n_samples: 1000
+Patience counter: 30/30
+Terminate training!

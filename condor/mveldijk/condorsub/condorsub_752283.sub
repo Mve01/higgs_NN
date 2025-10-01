@@ -1,0 +1,13 @@
+executable=/project/atlas/users/mveldijk/drellyan_maf/condor/mveldijk/condorsub/condorsub_752283.sh
+JobBatchName=condorsub_752283
++JobCategory="medium"
++UseOS="el9"
++MaxWallTime=
+request_cpus=1
+request_gpus=0
+
+request_memory=8000
+log = /project/atlas/users/mveldijk/drellyan_maf/condorsub_752283_752283.condorlog
+output = /project/atlas/users/mveldijk/drellyan_maf/condorsub_752283_752283.log
+error = /project/atlas/users/mveldijk/drellyan_maf/condorsub_752283_752283.stderr
+queue

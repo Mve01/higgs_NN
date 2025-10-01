@@ -1,0 +1,11 @@
+executable=/project/atlas/users/mveldijk/drellyan_maf/run/run_train.sh
++JobCategory="short"
++UseOS="el9"
+request_cpus=1
+request_GPUs=1
+requirements = regexp("L40S", TARGET.GPUs_DeviceName)
+request_memory=16000
+log = /project/atlas/users/mveldijk/drellyan_maf/run/run_train.condorlog
+output = /project/atlas/users/mveldijk/drellyan_maf/run/run_train.log
+error = /project/atlas/users/mveldijk/drellyan_maf/run/run_train.log
+queue

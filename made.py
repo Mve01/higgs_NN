@@ -7,11 +7,10 @@ from torch import Tensor
 from torch.nn import functional as F
 from torch.nn import ReLU
 
-
 class MaskedLinear(nn.Linear):
     """Linear transformation with masked out elements. y = x.dot(mask*W.T) + b"""
 
-    def __init__(self, n_in: int, n_out: int, bias: bool = True) -> None:
+    def __init__(self, n_in: int, n_out: int, device: str, bias: bool = True) -> None:
         """
         Args:
             n_in: Size of each input sample.
@@ -19,14 +18,20 @@ class MaskedLinear(nn.Linear):
             bias: Whether to include additive bias. Default: True.
         """
         super().__init__(n_in, n_out, bias)
+        self.device = device
         self.mask = None
+        self.weight = nn.Parameter(self.weight.to(device))
+        if bias:
+            self.bias = nn.Parameter(self.bias.to(device))
 
     def initialise_mask(self, mask: Tensor):
         """Internal method to initialise mask."""
-        self.mask = mask
+        #self.register_buffer("mask", mask)
+        self.mask = mask.to(self.device)
 
     def forward(self, x: Tensor) -> Tensor:
         """Apply masked linear transformation."""
+        x = x.to(self.device)
         return F.linear(x, self.mask * self.weight, self.bias)
 
 
@@ -35,9 +40,10 @@ class MADE(nn.Module):
         self,
         n_in: int,
         hidden_dims: List[int],
+        device: str,
         gaussian: bool = False,
         random_order: bool = False,
-        seed: Optional[int] = None
+        seed: Optional[int] = 290713
     ) -> None:
         """Initalise MADE model.
     
@@ -46,11 +52,12 @@ class MADE(nn.Module):
             hidden_dims: List with sizes of the hidden layers.
             gaussian: Whether to use Gaussian MADE. Default: False.
             random_order: Whether to use random order. Default: False.
-            seed: Random seed for numpy. Default: None.
+            seed: Random seed for numpy. Default: 290713.
         """
         super().__init__()
         # Set random seed.
         np.random.seed(seed)
+        self.device = device
         self.n_in = n_in
         self.n_out = 2 * n_in if gaussian else n_in
         self.hidden_dims = hidden_dims
@@ -58,32 +65,30 @@ class MADE(nn.Module):
         self.gaussian = gaussian
         self.masks = {}
         self.mask_matrix = []
-        self.layers = []
+        layers = []
 
         # List of layers sizes.
         dim_list = [self.n_in, *hidden_dims, self.n_out]
         # Make layers and activation functions.
         for i in range(len(dim_list) - 2):
-            self.layers.append(MaskedLinear(dim_list[i], dim_list[i + 1]),)
-            self.layers.append(ReLU())
+            layers.append(MaskedLinear(dim_list[i], dim_list[i + 1], device = self.device))
+            layers.append(ReLU())
         # Hidden layer to output layer.
-        self.layers.append(MaskedLinear(dim_list[-2], dim_list[-1]))
+        layers.append(MaskedLinear(dim_list[-2], dim_list[-1], device = self.device))
         # Create model.
-        self.model = nn.Sequential(*self.layers)
+        self.model = nn.Sequential(*layers).to(device)
         # Get masks for the masked activations.
         self._create_masks()
 
-    def forward(self, x: Tensor) -> Tensor:
-        """Forward pass."""
-        if self.gaussian:
-            # If the output is Gaussian, return raw mus and sigmas.
-            out = self.model(x)
-            mu, raw_log_scale = torch.chunk(out, 2, dim=1)
 
-            return torch.cat([mu, raw_log_scale], dim=1)
-        else:
-            # If the output is Bernoulli, run it trough sigmoid to squash p into (0,1).
-            return torch.sigmoid(self.model(x))
+    def forward(self, x: Tensor) -> Tensor:
+        # with torch.no_grad():
+        #     out = self.model(x)
+        x = x.to(self.device)
+        out = self.model(x)
+        mu, raw_log_scale = torch.chunk(out, 2, dim=1) 
+        return torch.cat([mu, raw_log_scale], dim=1)
+    
 
     def _create_masks(self) -> None:
         """Create masks for the hidden layers."""
@@ -109,10 +114,10 @@ class MADE(nn.Module):
             m = self.masks[i]
             m_next = self.masks[i + 1]
             # Initialise mask matrix.
-            M = torch.zeros(len(m_next), len(m))
+            M = torch.zeros(len(m_next), len(m), device = self.device)
             for j in range(len(m_next)):
                 # Use broadcasting to compare m_next[j] to each element in m.
-                M[j, :] = torch.from_numpy((m_next[j] >= m).astype(int))
+                M[j, :] = torch.from_numpy((m_next[j] >= m).astype(int)).to(self.device)
             # Append to mask matrix list.
             self.mask_matrix.append(M)
 

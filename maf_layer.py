@@ -6,13 +6,15 @@ from made import MADE
 
 
 class MAFLayer(nn.Module):
-    def __init__(self, dim: int, hidden_dims: List[int], reverse: bool):
+    def __init__(self, dim: int, hidden_dims: List[int], device: str, reverse: bool):
         super(MAFLayer, self).__init__()
         self.dim = dim
-        self.made = MADE(dim, hidden_dims, gaussian=True, seed=None)
+        self.device = device
+        self.made = MADE(dim, hidden_dims, device = self.device, gaussian=True, seed=290713)
         self.reverse = reverse
 
     def forward(self, x: Tensor) -> Tuple[Tensor, Tensor]:
+        x = x.to(self.device).float()
         out = self.made(x.float())
         mu, raw_log_scale = torch.chunk(out, 2, dim=1)
 
@@ -26,8 +28,9 @@ class MAFLayer(nn.Module):
         return u, log_det
 
     def backward(self, u: Tensor) -> Tuple[Tensor, Tensor]:
+        u = u.to(self.device).float()
         u = u.flip(dims=(1,)) if self.reverse else u
-        x = torch.zeros_like(u)
+        x = torch.zeros_like(u, device = self.device)
         for dim in range(self.dim):
             out = self.made(x)
             mu, raw_log_scale = torch.chunk(out, 2, dim=1)
@@ -37,6 +40,6 @@ class MAFLayer(nn.Module):
             log_scale = B * torch.tanh(raw_log_scale / B)
 
             x[:, dim] = mu[:, dim] + u[:, dim] * torch.exp(-0.5 * log_scale[:, dim])
-            
+
         log_det = -0.5 * torch.sum(log_scale, dim=1)
         return x, log_det
